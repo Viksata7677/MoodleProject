@@ -1,0 +1,40 @@
+from django.contrib import admin
+from django.contrib.auth import get_user_model
+from django.contrib.auth.admin import UserAdmin
+
+from accounts.forms import CustomUserChangeForm, CustomUserCreationForm
+from accounts.models import Student
+
+# Register your models here.
+
+UserModel = get_user_model()
+
+
+class ProfileInline(admin.StackedInline):  # Shows the model (Student) in this case the AppUserAdmin model
+    model = Student
+    can_delete = False
+    field = ('student_number', 'points')
+
+
+@admin.register(UserModel)
+class AppUserAdmin(UserAdmin):
+    inlines = (ProfileInline, )  # Embeds the ProfileInline in the admin
+    form = CustomUserChangeForm
+    add_form = CustomUserCreationForm
+    list_display = ('username', 'email', 'first_name', 'last_name', 'age')
+
+    add_fieldsets = (
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": ("username", 'email', "password1", "password2"),
+            },
+        ),
+    )
+
+    fieldsets = (
+        ('Credentials', {'fields': ('email', 'password')}),
+        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        ('Important dates', {'fields': ('last_login',)}),
+    )
