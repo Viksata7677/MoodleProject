@@ -6,13 +6,18 @@ from django import forms
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = get_user_model()  # Should name our extended user, because django works with the base user (USER)
-        fields = ('username', 'email')  # password is always included
+        fields = ('username', 'email', 'age')  # password is always included
         widgets = {
-            'username': forms.TextInput(attrs={'placeholder': 'Enter you username'}),
-            'email': forms.EmailInput(attrs={'placeholder': 'Enter your email address'}),
-            # TODO: add placeholders for password1 and password2
+            'username': forms.TextInput(attrs={'placeholder': 'Username'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'Email address'}),
+            'age': forms.TextInput(attrs={'placeholder': 'Age'}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['password1'].widget.attrs['placeholder'] = 'Password'
+        self.fields['password2'].widget.attrs['placeholder'] = 'Confirm Password'
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
@@ -24,8 +29,8 @@ class CustomAuthenticationForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.update({
-            'placeholder': 'Enter your email',
+            'placeholder': 'Email/username',
         })
         self.fields['password'].widget.attrs.update({
-            'placeholder': 'Enter your password',
+            'placeholder': 'Password',
         })
