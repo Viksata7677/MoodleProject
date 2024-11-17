@@ -1,0 +1,47 @@
+/* Navigation Bar */
+body {
+    padding: 7px;
+}
+nav {
+  background-image: linear-gradient(92.88deg, #032F30 9.16%, #0A7075 43.89%, #0C969C 64.72%);
+  border-radius: 15px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  padding: 11px 30px;
+  font-family: "Inter UI", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #FFFFFF; /* Text color to match the button */
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  background-color: transparent; /* No background initially */
+  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+}
+
+nav ul li a:hover {
+  background-color: rgba(12, 150, 156, 0.7); /* Slight teal overlay on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  color: #FFFFFF; /* Ensure text remains white */
+}
+
+nav ul li a:active {
+  transform: scale(0.95); /* Shrink slightly on click */
+  background-color: rgba(10, 112, 117, 0.8); /* Darker teal for active state */
+}
