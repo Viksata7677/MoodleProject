@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>This page doesn't exist.</h1>
+    <a href="{% url 'home' %}">Return to Home</a>
+{% endblock %}
+{# Will be visible if in settings.py DEBUG is set to False and ALLOWED_HOSTS to the corresponding host #}
