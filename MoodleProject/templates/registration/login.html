@@ -3,7 +3,7 @@
     <form method="post">
     {{ form.as_p }}
     {% csrf_token %}
-        <button>Login</button>
+        <button class="button-36">Login</button>
         <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
     </form>
 {% endblock %}

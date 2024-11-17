@@ -1,0 +1,31 @@
+.button-36 {
+  background-image: linear-gradient(92.88deg, #032F30 9.16%, #0A7075 43.89%, #0C969C 64.72%);
+  border-radius: 15px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  height: 2.3rem;
+  padding: 0 1.6rem;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+  transition: all .5s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-36:hover {
+  box-shadow: rgb(39, 77, 96) 0 1px 5px;
+  transition-duration: .1s;
+}
+
+.button-36:active {
+  transform: scale(0.95);
+  box-shadow: rgb(39, 77, 96) 0 0 3px;
+  transition-duration: 0.1s;
+}
