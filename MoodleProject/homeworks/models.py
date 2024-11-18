@@ -9,8 +9,7 @@ from accounts.models import Student
 class Homework(models.Model):
     # student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='homework')
     title = models.CharField(max_length=100)
-    image_url = models.URLField()
-    image = models.ImageField(upload_to='homework/', blank=True, null=True)
+    image = models.ImageField(upload_to='homework_images/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
     grade = models.DecimalField(
         max_digits=4,

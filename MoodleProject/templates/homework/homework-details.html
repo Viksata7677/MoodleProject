@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>Homework details</h1>
-        {{ homework.title }}
-
-    <p><img src="{{ homework.image_url }}" alt="homework image"/></p>
+    <p>Homework title: {{ homework.title }}</p>
+    
     {% if homework.description %}
-            {{ homework.description }}
+            <p>Homework description: {{ homework.description }}</p>
     {% endif %}
     <p>Grade: {{ homework.grade }}</p>
     <p>{{ homework.uploaded_at }}</p>
+    <p><img src="{{ homework.image.url }}" alt="image"/></p>
     
     <a href="{% url 'homework-edit' homework.pk %}">Edit</a>
     <a href="{% url 'homework-delete' homework.pk %}">Delete</a>

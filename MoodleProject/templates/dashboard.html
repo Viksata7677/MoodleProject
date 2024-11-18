@@ -5,8 +5,6 @@
         <h1>Homeworks uploaded: {{ homeworks.count }}</h1>
     {% for homework in homeworks %}
         <p>{{ homework.title }}</p>
-        <p><img src="{{ homework.image_url }}" alt="homework image"/></p>
-        
         <p>Graded status: {{ homework.is_graded }}</p>
     
         <a class="" href="{% url 'homework-details' homework.pk %}">Details</a>
