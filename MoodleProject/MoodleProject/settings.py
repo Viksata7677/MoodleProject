@@ -128,6 +128,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+SESSION_COOKIE_HTTPONLY = True  # Cookie can't be accessed with JavaScript
+
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = (
