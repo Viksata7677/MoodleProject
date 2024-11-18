@@ -10,15 +10,8 @@ from accounts.models import Student
 UserModel = get_user_model()
 
 
-class ProfileInline(admin.StackedInline):  # Shows the model (Student) in this case the AppUserAdmin model
-    model = Student
-    can_delete = False
-    field = ('student_number', 'points')
-
-
 @admin.register(UserModel)
 class AppUserAdmin(UserAdmin):
-    inlines = (ProfileInline, )  # Embeds the ProfileInline in the admin
     form = CustomUserChangeForm
     add_form = CustomUserCreationForm
     list_display = ('username', 'email', 'first_name', 'last_name', 'age')

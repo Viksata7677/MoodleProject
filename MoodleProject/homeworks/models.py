@@ -17,3 +17,8 @@ class Homework(models.Model):
         blank=True, null=True)
     is_graded = models.BooleanField(default=False)
     description = models.TextField(max_length=200, blank=True, null=True)
+
+    class Meta:
+        permissions = [
+            ('can_grade_homeworks', 'Can grade homeworks'),
+        ]
