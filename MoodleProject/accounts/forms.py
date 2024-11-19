@@ -6,7 +6,7 @@ from django import forms
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = get_user_model()  # Should name our extended user, because django works with the base user (USER)
-        fields = ('username', 'email', 'age')  # password is always included
+        fields = ('username', 'email', 'age', 'role')  # password is always included
         widgets = {
             'username': forms.TextInput(attrs={'placeholder': 'Username'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Email address'}),

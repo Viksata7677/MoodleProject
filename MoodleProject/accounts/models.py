@@ -2,7 +2,7 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
+from accounts.choices import RoleChoices
 from accounts.managers import AppUserManager
 
 
@@ -10,7 +10,7 @@ from accounts.managers import AppUserManager
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    # TODO: Role choices for teacher and student
+    role = models.CharField(max_length=10, choices=RoleChoices.choices, null=True)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     age = models.IntegerField(null=True)
