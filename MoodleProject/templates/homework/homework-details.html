@@ -13,4 +13,7 @@
     
     <a href="{% url 'homework-edit' homework.pk %}">Edit</a>
     <a href="{% url 'homework-delete' homework.pk %}">Delete</a>
+    {% if perms.homeworks.can_grade_homeworks %}
+    <a href="{% url 'homework-grade' homework.pk %}">Grade</a>
+    {% endif %}
 {% endblock %}

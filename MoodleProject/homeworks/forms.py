@@ -30,3 +30,10 @@ class HomeworkDeleteForm(DisabledFieldsMixin, HomeworkBaseForm):
     class Meta(HomeworkBaseForm.Meta):
         exclude = HomeworkBaseForm.Meta.exclude + ('image',)  # Removes 'image' field when deleting a homework
 
+
+class HomeworkGradeForm(PlaceholderMixin, forms.ModelForm):
+    class Meta:
+        model = Homework
+        fields = ('grade',)
+
+

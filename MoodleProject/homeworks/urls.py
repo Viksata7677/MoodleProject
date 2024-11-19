@@ -7,4 +7,5 @@ urlpatterns = [
                                 path('details/', views.HomeworkDetailPage.as_view(), name='homework-details'),
                                 path('edit/', views.HomeworkEditPage.as_view(), name='homework-edit'),
                                 path('delete/', views.HomeworkDeletePage.as_view(), name='homework-delete'),
+                                path('grade/', views.HomeworkGradePage.as_view(), name='homework-grade'),
 ]))]

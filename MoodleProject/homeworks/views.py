@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from accounts.models import Student
-from homeworks.forms import HomeworkCreateForm, HomeworkEditForm, HomeworkDeleteForm
+from homeworks.forms import HomeworkCreateForm, HomeworkEditForm, HomeworkDeleteForm, HomeworkGradeForm
 from homeworks.models import Homework
 
 
@@ -53,3 +53,12 @@ class HomeworkDeletePage(DeleteView):
 
     def get_initial(self) -> dict:
         return self.get_object().__dict__
+
+
+class HomeworkGradePage(UpdateView):
+    model = Homework
+    form_class = HomeworkGradeForm
+    template_name = 'homework/homework-grade.html'
+
+    def get_success_url(self):
+        return reverse_lazy('homework-details', kwargs={'pk': self.object.pk})
