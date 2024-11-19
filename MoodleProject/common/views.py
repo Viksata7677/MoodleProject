@@ -15,4 +15,6 @@ class DashboardView(LoginRequiredMixin, ListView):
     model = Homework
     template_name = 'dashboard.html'
     context_object_name = 'homeworks'
-    queryset = Homework.objects.all()
+
+    def get_queryset(self):
+        return Homework.objects.filter(student__user=self.request.user)
