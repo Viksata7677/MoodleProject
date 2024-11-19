@@ -1,6 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+
+from accounts.models import Student
 from homeworks.forms import HomeworkCreateForm, HomeworkEditForm, HomeworkDeleteForm
 from homeworks.models import Homework
 
@@ -21,7 +23,9 @@ class HomeworkUploadPage(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         homework = form.save(commit=False)
-        homework.user = self.request.user
+
+        # Свързване на студента директно
+        homework.student = self.request.user.student
 
         return super().form_valid(form)
 
