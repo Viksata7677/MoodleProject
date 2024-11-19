@@ -17,4 +17,9 @@ class DashboardView(LoginRequiredMixin, ListView):
     context_object_name = 'homeworks'
 
     def get_queryset(self):
-        return Homework.objects.filter(student__user=self.request.user)
+        user = self.request.user
+
+        if user.groups.filter(name='Teacher').exists():
+            return Homework.objects.all()
+        else:
+            return Homework.objects.filter(student__user=user)
