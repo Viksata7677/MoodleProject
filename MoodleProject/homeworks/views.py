@@ -1,8 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
-
 from homeworks.forms import HomeworkCreateForm, HomeworkEditForm, HomeworkDeleteForm
 from homeworks.models import Homework
 
@@ -48,8 +46,6 @@ class HomeworkDeletePage(DeleteView):
     form_class = HomeworkDeleteForm
     template_name = 'homework/homework-delete.html'
     success_url = reverse_lazy('dashboard')
-
-
 
     def get_initial(self) -> dict:
         return self.get_object().__dict__
