@@ -50,3 +50,14 @@ class ProfileBaseForm(forms.ModelForm):
 class ProfileEditForm(ProfileBaseForm):
     class Meta(ProfileBaseForm.Meta):
         fields = ['first_name', 'last_name', 'email', 'age', 'role']
+
+
+class ProfileDeleteForm(ProfileBaseForm):
+    class Meta(ProfileBaseForm.Meta):
+        fields = ['first_name', 'last_name', 'email', 'age', 'role']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.required = False
+            field.widget.attrs['disabled'] = True

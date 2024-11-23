@@ -24,8 +24,7 @@ class HomeworkUploadPage(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         homework = form.save(commit=False)
 
-        # Свързване на студента директно
-        homework.student = self.request.user.student
+        homework.student = self.request.user.student_profile
 
         return super().form_valid(form)
 

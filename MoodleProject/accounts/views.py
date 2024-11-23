@@ -3,9 +3,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from accounts.mixins import RedirectIfLoggedInMixin
-from accounts.forms import CustomUserCreationForm, CustomAuthenticationForm, ProfileEditForm
+from accounts.forms import CustomUserCreationForm, CustomAuthenticationForm, ProfileEditForm, ProfileDeleteForm
 from accounts.models import CustomUser
 
 # Create your views here.
@@ -44,3 +44,16 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('profile-details', kwargs={'pk': self.object.pk})
+
+
+class ProfileDeleteView(DeleteView):
+    model = UserModel
+    template_name = 'accounts/profile-delete.html'
+    form_class = ProfileDeleteForm
+    success_url = reverse_lazy('home')
+
+    def get_initial(self):  # returns a dictionary of the initial data and prepopulates the form
+        return self.object.__dict__
+
+    def form_invalid(self, form):
+        return self.form_valid(form)
