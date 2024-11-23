@@ -21,13 +21,19 @@ class Homework(models.Model):
     description = models.TextField(max_length=200, blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        if self.grade is not None and 2 <= self.grade <= 6:
-            self.is_graded = True
-        else:
-            self.is_graded = False
+
+        self.is_graded = self.grade is not None
         super().save(*args, **kwargs)
+
+        self.student.update_avg_grade()
+
+    def delete(self, *args, **kwargs):
+        super().delete(*args, **kwargs)
+        self.student.update_avg_grade()
 
     class Meta:
         permissions = [
             ('can_grade_homeworks', 'Can grade homeworks'),
         ]
+
+

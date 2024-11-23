@@ -49,5 +49,12 @@ class Student(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='student_profile')
     avg_grade = models.FloatField(default=0.0)
 
+    def update_avg_grade(self):
+        grades = self.homework.filter(is_graded=True).values_list('grade', flat=True)
 
+        if grades:
+            self.avg_grade = sum(grades) / len(grades)
+        else:
+            self.avg_grade = 0.0
 
+        self.save()

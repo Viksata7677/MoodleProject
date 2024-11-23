@@ -5,13 +5,13 @@ from django.utils.deconstruct import deconstructible
 @deconstructible
 class GradeValidator:
 
-    def __init__(self, min_value=2, max_value=6):
-        self.min_value = min_value
-        self.max_value = max_value
+    def __init__(self, min_grade=2, max_grade=6):
+        self.min_grade = min_grade
+        self.max_grade = max_grade
 
     def __call__(self, value):
-        if value < self.min_value or value > self.max_value:
+        if value < self.min_grade or value > self.max_grade:
             raise ValidationError(
-                f'The grade must be between {self.min_value} and {self.max_value}. You entered an invalid grade: {value}.',
+                f'The grade must be between {self.min_grade} and {self.max_grade}. You entered an invalid grade: {value}.',
                 params={'value': value},
             )
