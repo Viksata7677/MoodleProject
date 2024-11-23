@@ -1,6 +1,7 @@
 from django.db import models
 
 from accounts.models import Student
+from homeworks.validators import GradeValidator
 
 
 # Create your models here.
@@ -14,6 +15,7 @@ class Homework(models.Model):
     grade = models.DecimalField(
         max_digits=4,
         decimal_places=2,
+        validators=[GradeValidator()],
         blank=True, null=True)
     is_graded = models.BooleanField(default=False)
     description = models.TextField(max_length=200, blank=True, null=True)
