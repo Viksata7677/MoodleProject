@@ -1,6 +1,8 @@
 from django.core.exceptions import ValidationError
+from django.utils.deconstruct import deconstructible
 
 
+@deconstructible
 class GradeValidator:
 
     def __init__(self, min_value=2, max_value=6):
