@@ -5,6 +5,6 @@
         {{ form }}
         {% csrf_token %}
         <button>Yes!</button>
-        <button><a class="" href="{% url 'profile-details' request.user.pk %}">No!</a></button>
+        <button type="button" onclick="history.back()">No!</button>  {# upon click navigates to the previous page in the browser history #}
     </form>
 {% endblock %}
