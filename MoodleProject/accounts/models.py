@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from accounts.choices import RoleChoices
 from accounts.managers import AppUserManager
+from accounts.validators import NameValidator
 
 
 # Create your models here.
@@ -11,8 +12,8 @@ from accounts.managers import AppUserManager
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     role = models.CharField(max_length=10, choices=RoleChoices.choices, null=True)
-    first_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20)
+    first_name = models.CharField(max_length=20, validators=[NameValidator(message='Should contain only letters')],)
+    last_name = models.CharField(max_length=20, validators=[NameValidator(message='Should contain only letters')],)
     age = models.IntegerField(null=True)
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=20, unique=True)

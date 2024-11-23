@@ -2,10 +2,7 @@ from django.shortcuts import redirect
 
 
 class RedirectIfLoggedInMixin:
-    """
-    Mixin to redirect logged-in users to the home page when they try
-    to access views meant for non-authenticated users (login, register).
-    """
+
     redirect_url = 'home'  # Redirects to that view when the user tries to access a view meant for non-authenticated
                                                         # users
 
