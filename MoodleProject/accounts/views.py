@@ -1,12 +1,15 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 from accounts.mixins import RedirectIfLoggedInMixin
 from accounts.forms import CustomUserCreationForm, CustomAuthenticationForm
 
 
 # Create your views here.
+
+UserModel = get_user_model()
 
 
 class UserRegisterView(CreateView):
@@ -22,3 +25,8 @@ class UserRegisterView(CreateView):
 
 class CustomLoginView(RedirectIfLoggedInMixin, LoginView):
     authentication_form = CustomAuthenticationForm
+
+
+class ProfileDetailView(LoginRequiredMixin, DetailView):
+    model = UserModel
+    template_name = 'accounts/profile-details.html'

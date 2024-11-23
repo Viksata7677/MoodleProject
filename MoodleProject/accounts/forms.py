@@ -27,11 +27,13 @@ class CustomUserChangeForm(UserChangeForm):
 
 
 class CustomAuthenticationForm(AuthenticationForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs.update({
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={
             'placeholder': 'Email/username',
         })
-        self.fields['password'].widget.attrs.update({
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
             'placeholder': 'Password',
         })
+    )

@@ -2,7 +2,9 @@
         <ul>
             <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-            <li><a href="#Profileurl">Profile</a></li>
+                {% if request.user.is_authenticated %}
+            <li><a href="{% url 'profile-details' request.user.pk %}">Profile</a></li>
+                {% endif %}
         {# TODO: if user has permission to access the admin panel make it visible else hide it #}
             <li><a href="http://localhost:8000/admin/">AdminPanel</a></li>
             <li><a href="{% url 'homework-upload' %}">Upload homework</a></li>
