@@ -5,8 +5,9 @@
                 {% if request.user.is_authenticated %}
             <li><a href="{% url 'profile-details' request.user.pk %}">Profile</a></li>
                 {% endif %}
-        {# TODO: if user has permission to access the admin panel make it visible else hide it #}
+                {% if request.user.is_staff %}
             <li><a href="http://localhost:8000/admin/">AdminPanel</a></li>
+                {% endif %}
             <li><a href="{% url 'homework-upload' %}">Upload homework</a></li>
             {% if not request.user.is_authenticated %}
                 <li><a href="{% url 'login' %}">Login</a></li>
