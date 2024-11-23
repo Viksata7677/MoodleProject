@@ -44,17 +44,16 @@ class CustomAuthenticationForm(AuthenticationForm):
 class ProfileBaseForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = '__all__'
+        fields = ['first_name', 'last_name', 'email', 'age', 'role']
 
 
 class ProfileEditForm(ProfileBaseForm):
     class Meta(ProfileBaseForm.Meta):
-        fields = ['first_name', 'last_name', 'email', 'age', 'role']
+        fields = ['first_name', 'last_name', 'age']
 
 
 class ProfileDeleteForm(ProfileBaseForm):
-    class Meta(ProfileBaseForm.Meta):
-        fields = ['first_name', 'last_name', 'email', 'age', 'role']
+    pass
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
