@@ -1,11 +1,12 @@
 from django.contrib.auth import login, get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, UpdateView
 from accounts.mixins import RedirectIfLoggedInMixin
-from accounts.forms import CustomUserCreationForm, CustomAuthenticationForm
-
+from accounts.forms import CustomUserCreationForm, CustomAuthenticationForm, ProfileEditForm
+from accounts.models import CustomUser
 
 # Create your views here.
 
@@ -30,3 +31,16 @@ class CustomLoginView(RedirectIfLoggedInMixin, LoginView):
 class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = UserModel
     template_name = 'accounts/profile-details.html'
+
+
+class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = UserModel
+    template_name = 'accounts/profile-edit.html'
+    form_class = ProfileEditForm
+
+    def test_func(self):  # gives 403 error when trying to edit a different user profile
+        profile = get_object_or_404(CustomUser, pk=self.kwargs['pk'])
+        return self.request.user == profile
+
+    def get_success_url(self):
+        return reverse_lazy('profile-details', kwargs={'pk': self.object.pk})

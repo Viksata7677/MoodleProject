@@ -8,7 +8,9 @@
     {% endif %}
     <p>Grade: {{ homework.grade }}</p>
     <p>{{ homework.uploaded_at }}</p>
+    {% if request.user.teacher_profile %}
     <p>Uploaded by '{{ homework.student.user.username }}'</p>
+    {% endif %}
     <p><img src="{{ homework.image.url }}" alt="image"/></p>
     
     <a href="{% url 'homework-edit' homework.pk %}">Edit</a>

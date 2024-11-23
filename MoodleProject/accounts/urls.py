@@ -1,6 +1,6 @@
 from django.contrib.auth.views import LogoutView
 from django.urls import path, include
-from accounts.views import UserRegisterView, CustomLoginView, ProfileDetailView
+from accounts.views import UserRegisterView, CustomLoginView, ProfileDetailView, ProfileEditView
 
 urlpatterns = [
     path('register/', UserRegisterView.as_view(), name='register'),
@@ -8,5 +8,6 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('profile/<int:pk>/', include([
         path('details/', ProfileDetailView.as_view(), name='profile-details'),
+        path('edit/', ProfileEditView.as_view(), name='profile-edit'),
     ]))
 ]

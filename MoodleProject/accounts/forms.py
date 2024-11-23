@@ -2,6 +2,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from django import forms
 
+from accounts.models import CustomUser
+
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
@@ -37,3 +39,14 @@ class CustomAuthenticationForm(AuthenticationForm):
             'placeholder': 'Password',
         })
     )
+
+
+class ProfileBaseForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = '__all__'
+
+
+class ProfileEditForm(ProfileBaseForm):
+    class Meta(ProfileBaseForm.Meta):
+        fields = ['first_name', 'last_name', 'email', 'age', 'role']
