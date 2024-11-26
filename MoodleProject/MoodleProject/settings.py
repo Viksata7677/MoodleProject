@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+from decouple import config
 from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-u)gaws@7wdw+fftzlu!tl$%&&!sv4yms&2t)5*vm2og)^fpa+a'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -83,8 +84,8 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "django_project_final_exam",
-        "USER": "postgres",
-        "PASSWORD": "1234567",
+        "USER": config('DATABASE_USER'),
+        "PASSWORD": config('DATABASE_PASSWORD'),
         "HOST": "127.0.0.1",
         "PORT": "5432",
     }
