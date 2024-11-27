@@ -5,10 +5,14 @@
 
     <ul>
         {% for test in tests %}
-            <li>{{ test.title }} - Created by {{ test.created_by.user.username }} at {{ test.created_at }}</li>
+            <li>Question: {{ test.title }}</li>
             {% if request.user.role == 'teacher' %}
              <a class="" href="{% url 'delete-test' test.pk %}">Delete</a>
             {% endif %}
+            {% if request.user.role == 'student' %}
+            <a class="" href="{% url 'create-answer' test.pk %}">Answer</a>
+            {% endif %}
+            <a class="" href="{% url 'test-detail' test.pk %}">Details</a>
         {% endfor %}
         {% else %}
         <h1>No tests uploaded yet.</h1>

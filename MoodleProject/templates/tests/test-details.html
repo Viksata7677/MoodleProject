@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<h1>{{ test.title }}</h1>
+<p>Uploaded by: {{ test.created_by.user.username }}</p>
+<p>Uploaded at: {{ test.created_at }}</p>
+
+
+    {% if request.user.role == 'teacher' %}
+        <h2>Answers:</h2>
+{% if answers %}
+    <ol>
+        {% for answer in answers %}
+            <li>{{ answer.answer }} - Answered by: {{ answer.student.user.username }}</li>
+        {% endfor %}
+    </ol>
+{% else %}
+    <p>There are no answers yet.</p>
+{% endif %}
+    {% endif %}
+
+
+
+{% endblock %}
