@@ -1,0 +1,1 @@
+A Django web application where a student can upload photos of their homeworks, which are then reviewed and graded by a teacher. The app allows the student to submit homeworks as images and a teacher to view and assign grades to the submitted homeworks.
