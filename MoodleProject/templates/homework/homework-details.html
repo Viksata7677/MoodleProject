@@ -12,9 +12,12 @@
     <p>Uploaded by '{{ homework.student.user.username }}'</p>
     {% endif %}
     <p><img src="{{ homework.image.url }}" alt="image"/></p>
-    
-    <a href="{% url 'homework-edit' homework.pk %}">Edit</a>
-    <a href="{% url 'homework-delete' homework.pk %}">Delete</a>
+    {% if perms.homeworks.change_homework %}
+        <a href="{% url 'homework-edit' homework.pk %}">Edit</a>
+    {% endif %}
+    {% if perms.homeworks.delete_homework %}
+        <a href="{% url 'homework-delete' homework.pk %}">Delete</a>
+    {% endif %}
     {% if perms.homeworks.can_grade_homeworks %}
     <a href="{% url 'homework-grade' homework.pk %}">Grade</a>
     {% endif %}
