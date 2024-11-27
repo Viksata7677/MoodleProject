@@ -1,3 +1,6 @@
+from django.http import HttpResponseForbidden
+
+
 class PlaceholderMixin:
     placeholders = {}
 
@@ -16,3 +19,14 @@ class DisabledFieldsMixin:
         for field_name in self.disabled_fields:
             if field_name in self.fields:
                 self.fields[field_name].disabled = True
+
+
+class PermissionRequiredMixin:
+    permission_required = None
+    permission_denied_message = None
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm(self.permission_required):
+            return HttpResponseForbidden(self.permission_denied_message)
+        return super().dispatch(request, *args, **kwargs)
+
