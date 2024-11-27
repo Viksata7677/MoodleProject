@@ -14,7 +14,7 @@ class HomeworkUploadPage(LoginRequiredMixin, PermissionRequiredMixin, CreateView
     model = Homework
     form_class = HomeworkCreateForm
     template_name = 'homework/homework-upload.html'
-    success_url = reverse_lazy('dashboard')
+    success_url = reverse_lazy('homeworks')
     permission_required = 'homeworks.add_homework'
     permission_denied_message = "Can't upload homework as a teacher"
 
@@ -44,7 +44,7 @@ class HomeworkDeletePage(LoginRequiredMixin, PermissionRequiredMixin, DeleteView
     model = Homework
     form_class = HomeworkDeleteForm
     template_name = 'homework/homework-delete.html'
-    success_url = reverse_lazy('dashboard')
+    success_url = reverse_lazy('homeworks')
     permission_required = 'homeworks.delete_homework'
     permission_denied_message = "Can't delete if you are not a student."
 

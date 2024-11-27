@@ -1,10 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
+    {% if tests %}
             <h1>All Tests</h1>
 
     <ul>
         {% for test in tests %}
             <li>{{ test.title }} - Created by {{ test.created_by.user.username }} at {{ test.created_at }}</li>
+            {% if request.user.role == 'teacher' %}
+             <a class="" href="{% url 'delete-test' test.pk %}">Delete</a>
+            {% endif %}
         {% endfor %}
+        {% else %}
+        <h1>No tests uploaded yet.</h1>
+    {% endif %}
     </ul>
 {% endblock %}
