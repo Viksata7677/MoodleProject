@@ -2,18 +2,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
-from accounts.models import Student
+from common.mixins import PermissionRequiredMixin
 from homeworks.forms import HomeworkCreateForm, HomeworkEditForm, HomeworkDeleteForm, HomeworkGradeForm
-from homeworks.mixins import PermissionRequiredMixin
 from homeworks.models import Homework
 
 
 # Create your views here.
-
-# TODO: ADD VALIDATION ERRORS WHEN A USER TRIES TO ACCESS A VIEW BUT DOESNT HAVE THE PERMISSIONS FOR IT
-# EITHER WITH PermissionDenied, try-except-raise, custom errors like
-#   def custom_404_view(request, exception):
-#       return render(request, '404.html', status=404)
 
 
 class HomeworkUploadPage(LoginRequiredMixin, PermissionRequiredMixin, CreateView):

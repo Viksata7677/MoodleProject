@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+            <h1>All Tests</h1>
+
+    <ul>
+        {% for test in tests %}
+            <li>{{ test.title }} - Created by {{ test.created_by.user.username }} at {{ test.created_at }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

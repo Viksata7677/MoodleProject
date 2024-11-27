@@ -1,10 +1,14 @@
     <nav>
         <ul>
             <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'test-list' %}">Tests</a></li>
+            <li><a href="{% url 'homeworks' %}">Homeworks</a></li>
                 {% if request.user.is_authenticated %}
             <li><a href="{% url 'profile-details' request.user.pk %}">Profile</a></li>
                 {% endif %}
+        {% if request.user.role == 'teacher' %}
+            <li><a href="{% url 'upload-test' %}">Upload Test</a></li>
+        {% endif %}
                 {% if request.user.is_staff %}
             <li><a href="http://localhost:8000/admin/">AdminPanel</a></li>
                 {% endif %}

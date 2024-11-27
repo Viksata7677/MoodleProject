@@ -11,9 +11,9 @@ class HomePageView(TemplateView):
     template_name = 'homepage.html'
 
 
-class DashboardView(LoginRequiredMixin, ListView):
+class HomeworkView(LoginRequiredMixin, ListView):
     model = Homework
-    template_name = 'dashboard.html'
+    template_name = 'homework/homeworks.html'
     context_object_name = 'homeworks'
 
     def get_queryset(self):
