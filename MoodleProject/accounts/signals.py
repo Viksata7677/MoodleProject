@@ -13,12 +13,7 @@ def create_profile(sender, instance, created, **kwargs):
     if created:
         if instance.role == 'teacher':
             Teacher.objects.create(user=instance)
-            teacher_group, _ = Group.objects.get_or_create(name="Teacher")
-            instance.groups.add(teacher_group)
-            permission = Permission.objects.get(codename='can_grade_homeworks')
-            instance.user_permissions.add(permission)
 
         elif instance.role == 'student':
             Student.objects.create(user=instance)
-            student_group, _ = Group.objects.get_or_create(name="Student")
-            instance.groups.add(student_group)
+
