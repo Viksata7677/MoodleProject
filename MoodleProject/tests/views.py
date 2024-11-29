@@ -27,6 +27,7 @@ class TestsView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     context_object_name = 'tests'
     queryset = Test.objects.all()
     permission_required = 'tests.view_test'
+    permission_denied_message = "You don't have the permission to access this."
 
 
 class TestDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):

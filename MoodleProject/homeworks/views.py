@@ -34,7 +34,7 @@ class HomeworkEditPage(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     form_class = HomeworkEditForm
     template_name = 'homework/homework-edit.html'
     permission_required = 'homeworks.change_homework'
-    permission_denied_message = "Can't edit if you are not a student."
+    permission_denied_message = "Can't edit this homework."
 
     def get_success_url(self):
         return reverse_lazy('homework-details', kwargs={'pk': self.object.pk})
@@ -46,7 +46,7 @@ class HomeworkDeletePage(LoginRequiredMixin, PermissionRequiredMixin, DeleteView
     template_name = 'homework/homework-delete.html'
     success_url = reverse_lazy('homeworks')
     permission_required = 'homeworks.delete_homework'
-    permission_denied_message = "Can't delete if you are not a student."
+    permission_denied_message = "Can't delete this homework."
 
     def get_initial(self) -> dict:
         return self.get_object().__dict__
