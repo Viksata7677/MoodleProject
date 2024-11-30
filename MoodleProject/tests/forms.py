@@ -1,25 +1,26 @@
 from django import forms
-
-from homeworks.mixins import DisabledFieldsMixin
+from common.mixins import DisabledFieldsMixin, PlaceholderMixin
 from tests.models import Test, Answer
 
 
-class AnswerBaseForm(forms.ModelForm):
+class AnswerBaseForm(PlaceholderMixin, forms.ModelForm):
+    placeholders = {
+        'answer': 'Give your answer...',
+    }
+
     class Meta:
         model = Answer
         fields = ['answer']
-        widgets = {
-            'answer': forms.Textarea(attrs={'placeholder': 'Give your answer...'})
-        }
 
 
-class TestBaseForm(forms.ModelForm):
+class TestBaseForm(PlaceholderMixin, forms.ModelForm):
+    placeholders = {
+        'title': 'Enter the homework title...',
+    }
+
     class Meta:
         model = Test
         fields = ['title']
-        widgets = {
-            'title': forms.TextInput(attrs={'placeholder': 'Title of the test'})
-        }
 
 
 class TestCreateForm(TestBaseForm):

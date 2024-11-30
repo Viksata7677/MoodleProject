@@ -3,23 +3,21 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Authenti
 from django import forms
 
 from accounts.models import CustomUser
+from common.mixins import PlaceholderMixin
 
 
-class CustomUserCreationForm(UserCreationForm):
+class CustomUserCreationForm(PlaceholderMixin, UserCreationForm):
+    placeholders = {
+        'username': 'Your username...',
+        'email': 'Enter a valid email address...',
+        'age': 'Enter your age...',
+        'password1': 'Enter a strong password',
+        'password2': 'Confirm your password',
+    }
+
     class Meta(UserCreationForm.Meta):
         model = get_user_model()  # Should name our extended user, because django works with the base user (USER)
         fields = ('username', 'email', 'age', 'role')  # password is always included
-        widgets = {
-            'username': forms.TextInput(attrs={'placeholder': 'Username'}),
-            'email': forms.EmailInput(attrs={'placeholder': 'Email address'}),
-            'age': forms.TextInput(attrs={'placeholder': 'Age'}),
-        }
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        self.fields['password1'].widget.attrs['placeholder'] = 'Password'
-        self.fields['password2'].widget.attrs['placeholder'] = 'Confirm Password'
 
 
 class CustomUserChangeForm(UserChangeForm):
@@ -28,17 +26,11 @@ class CustomUserChangeForm(UserChangeForm):
         fields = '__all__'
 
 
-class CustomAuthenticationForm(AuthenticationForm):
-    username = forms.CharField(
-        widget=forms.TextInput(attrs={
-            'placeholder': 'Email/username',
-        })
-    )
-    password = forms.CharField(
-        widget=forms.PasswordInput(attrs={
-            'placeholder': 'Password',
-        })
-    )
+class CustomAuthenticationForm(PlaceholderMixin, AuthenticationForm):
+    placeholders = {
+        'username': 'Enter email or username',
+        'password': 'Enter your password',
+    }
 
 
 class ProfileBaseForm(forms.ModelForm):

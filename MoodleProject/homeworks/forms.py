@@ -1,6 +1,5 @@
 from django import forms
-
-from homeworks.mixins import PlaceholderMixin, DisabledFieldsMixin
+from common.mixins import DisabledFieldsMixin, PlaceholderMixin
 from homeworks.models import Homework
 
 
