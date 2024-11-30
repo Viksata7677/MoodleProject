@@ -9,7 +9,7 @@ from homeworks.validators import GradeValidator
 
 class Homework(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='homework')
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=30)
     image = models.ImageField(upload_to='homework_images/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
     grade = models.DecimalField(
