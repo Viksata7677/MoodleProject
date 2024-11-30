@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+    <div class="form-container">
 	<form method="post">
         {{ form }}
         {% csrf_token %}
         <button>Delete</button>
     </form>
+    </div>
 {% endblock %}

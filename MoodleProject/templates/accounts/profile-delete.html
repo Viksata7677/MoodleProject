@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+    <div class="form-container">
     <form method="post">
     <h1>Are you sure you want to delete your profile?</h1>
         {{ form }}
@@ -7,4 +8,5 @@
         <button>Yes!</button>
         <button type="button" onclick="history.back()">No!</button>  {# upon click navigates to the previous page in the browser history #}
     </form>
+    </div>
 {% endblock %}
