@@ -1,6 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView
-
 from common.mixins import PermissionRequiredMixin
 from homeworks.models import Homework
 
@@ -9,7 +8,12 @@ from homeworks.models import Homework
 
 
 class HomePageView(TemplateView):
-    template_name = 'homepage.html'
+
+    def get_template_names(self):
+        if self.request.user.is_authenticated:
+            return ['common/homepage-authenticated.html']
+
+        return ['common/homepage-not-authenticated.html']
 
 
 class HomeworkView(LoginRequiredMixin, PermissionRequiredMixin, ListView):

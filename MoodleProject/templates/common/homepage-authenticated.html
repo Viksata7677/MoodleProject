@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <main>
+        <div class="message">
+            <h1>Homepage for authenticated user</h1>
+            <h1>Hello {{ user.username }}</h1>
+        </div>
+    </main>
+{% endblock %}
