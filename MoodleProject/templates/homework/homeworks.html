@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+ <div class="container">
+        {% if homeworks %}
+            <div class="header">
+                <h1>Homeworks Uploaded: {{ homeworks.count }}</h1>
+            </div>
+
+            <div class="homework-list">
+                {% for homework in homeworks %}
+                    <div class="homework-card">
+                        <div class="homework-card-header">
+                            <p class="homework-title">{{ homework.title }}</p>
+                            {% if homework.is_graded %}
+                                <p class="homework-status status-graded">Graded</p>
+                            {% else %}
+                                <p class="homework-status status-pending">Pending</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="homework-card-actions">
+                            <a href="{% url 'homework-details' homework.pk %}" class="details-link">View Details</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-homework">
+                <h1>No homeworks uploaded yet</h1>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+
+

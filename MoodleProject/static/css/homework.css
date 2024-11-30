@@ -1,0 +1,80 @@
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.homework-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.homework-card {
+    background: #f4f4f4;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease;
+}
+
+.homework-card:hover {
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+.homework-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.homework-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.homework-status {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.status-graded {
+    color: #4caf50;
+}
+
+.status-pending {
+    color: #ff9800;
+}
+
+.homework-card-actions .details-link {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.homework-card-actions .details-link:hover {
+    background-color: #0056b3;
+}
+
+.no-homework {
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    color: #666;
+}
