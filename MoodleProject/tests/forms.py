@@ -8,12 +8,18 @@ class AnswerBaseForm(forms.ModelForm):
     class Meta:
         model = Answer
         fields = ['answer']
+        widgets = {
+            'answer': forms.Textarea(attrs={'placeholder': 'Give your answer...'})
+        }
 
 
 class TestBaseForm(forms.ModelForm):
     class Meta:
         model = Test
         fields = ['title']
+        widgets = {
+            'title': forms.TextInput(attrs={'placeholder': 'Title of the test'})
+        }
 
 
 class TestCreateForm(TestBaseForm):
