@@ -1,4 +1,4 @@
-/* General Container */
+
 .homework-details-container {
     max-width: 900px;
     margin: 20px auto;
@@ -10,7 +10,6 @@
     color: #333;
 }
 
-/* Header */
 .homework-header {
     text-align: center;
     margin-bottom: 30px;
@@ -22,7 +21,6 @@
     color: #444;
 }
 
-/* Homework Details Layout */
 .homework-details-layout {
     display: flex;
     justify-content: space-between;
@@ -33,7 +31,6 @@
     flex: 1;
 }
 
-/* Homework Info Item (Title, Description, etc.) */
 .homework-info-item, .homework-meta-item {
     margin-bottom: 20px;
 }
@@ -48,7 +45,6 @@
     font-size: 16px;
 }
 
-/* Homework Image */
 .homework-image {
     text-align: center;
     margin: 30px 0;
@@ -61,13 +57,11 @@
     border: 1px solid #ddd;
 }
 
-/* Homework Meta Section */
 .homework-meta {
-    flex: 0 0 250px; /* Fixed width for the meta section */
+    flex: 0 0 250px;
     text-align: right;
 }
 
-/* Actions Section */
 .homework-actions {
     display: flex;
     gap: 15px;

@@ -12,43 +12,65 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    max-width: 400px;
+    max-width: 350px;
     background-color: white;
-    padding: 25px;
+    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    color: var(--text-color);
 }
 
 form {
     width: 100%;
-    margin: 0 auto;
 }
 
 form input,
 form select,
 form textarea {
     width: 100%;
-    padding: 8px 12px;
-    margin-bottom: 12px;
+    padding: 9px;
+    margin-bottom: 4px;
     border: 1px solid var(--input-border-color);
-    border-radius: 4px;
-    font-size: 14px;
+    border-radius: 17px;
+    font-size: 16px;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: var(--input-focus-color);
+    outline: none;
 }
 
 form label {
-    margin-bottom: 5px;
-    font-size: 14px;
     display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
 }
 
-
-.form-group {
-    margin-bottom: 10px;
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 480px) {
     .form-container {
         width: 90%;
-        padding: 20px;
+        padding: 15px;
+    }
+
+    form input,
+    form select,
+    form textarea {
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 16px;
     }
 }
