@@ -1,24 +1,55 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Homework details</h1>
-    <p>Homework title: {{ homework.title }}</p>
+<div class="homework-details-container">
+    <header class="homework-header">
+        <h1>Homework Details</h1>
+    </header>
+
+    <div class="homework-details-layout">
+        <section class="homework-info">
+            <div class="homework-info-item">
+                <p><strong class="label">Title:</strong> <span class="homework-text">{{ homework.title }}</span></p>
+            </div>
+            
+            {% if homework.description %}
+                <div class="homework-info-item">
+                    <p><strong class="label">Description:</strong> <span class="homework-text">{{ homework.description }}</span></p>
+                </div>
+            {% endif %}
+            
+            {% if request.user.teacher_profile %}
+                <div class="homework-info-item">
+                    <p><strong class="label">Uploaded By:</strong> <span class="homework-text">{{ homework.student.user.username }}</span></p>
+                </div>
+            {% endif %}
+        </section>
     
-    {% if homework.description %}
-            <p>Homework description: {{ homework.description }}</p>
+        <aside class="homework-meta">
+            <div class="homework-meta-item">
+                <p><strong class="label">Grade:</strong> <span class="homework-text">{% if homework.grade %}{{ homework.grade }}{% else %}None{% endif %}</span></p>
+            </div>
+            <div class="homework-meta-item">
+                <p><strong class="label">Uploaded At:</strong> <span class="homework-text">{{ homework.uploaded_at|date:"d-m-Y H:i" }}</span></p>
+            </div>
+        </aside>
+    </div>
+
+    {% if homework.image %}
+    <section class="homework-image">
+        <img src="{{ homework.image.url }}" alt="Homework Image" />
+    </section>
     {% endif %}
-    <p>Grade: {{ homework.grade }}</p>
-    <p>{{ homework.uploaded_at }}</p>
-    {% if request.user.teacher_profile %}
-    <p>Uploaded by '{{ homework.student.user.username }}'</p>
-    {% endif %}
-    <p><img src="{{ homework.image.url }}" alt="image"/></p>
-    {% if perms.homeworks.change_homework %}
-        <a href="{% url 'homework-edit' homework.pk %}">Edit</a>
-    {% endif %}
-    {% if perms.homeworks.delete_homework %}
-        <a href="{% url 'homework-delete' homework.pk %}">Delete</a>
-    {% endif %}
-    {% if perms.homeworks.can_grade_homeworks %}
-    <a href="{% url 'homework-grade' homework.pk %}">Grade</a>
-    {% endif %}
+
+    <section class="homework-actions">
+        {% if perms.homeworks.change_homework %}
+            <a href="{% url 'homework-edit' homework.pk %}" class="btn btn-edit">Edit</a>
+        {% endif %}
+        {% if perms.homeworks.delete_homework %}
+            <a href="{% url 'homework-delete' homework.pk %}" class="btn btn-delete">Delete</a>
+        {% endif %}
+        {% if perms.homeworks.can_grade_homeworks %}
+            <a href="{% url 'homework-grade' homework.pk %}" class="btn btn-grade">Grade</a>
+        {% endif %}
+    </section>
+</div>
 {% endblock %}

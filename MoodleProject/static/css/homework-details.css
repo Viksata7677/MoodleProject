@@ -1,0 +1,112 @@
+/* General Container */
+.homework-details-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* Header */
+.homework-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.homework-header h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #444;
+}
+
+/* Homework Details Layout */
+.homework-details-layout {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.homework-info, .homework-meta {
+    flex: 1;
+}
+
+/* Homework Info Item (Title, Description, etc.) */
+.homework-info-item, .homework-meta-item {
+    margin-bottom: 20px;
+}
+
+.label {
+    font-weight: bold;
+    color: #555;
+}
+
+.homework-text {
+    color: #333;
+    font-size: 16px;
+}
+
+/* Homework Image */
+.homework-image {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.homework-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+/* Homework Meta Section */
+.homework-meta {
+    flex: 0 0 250px; /* Fixed width for the meta section */
+    text-align: right;
+}
+
+/* Actions Section */
+.homework-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    color: #fff;
+}
+
+.btn-edit {
+    background-color: #007bff;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+}
+
+.btn-delete:hover {
+    background-color: #a71d2a;
+}
+
+.btn-grade {
+    background-color: #28a745;
+}
+
+.btn-grade:hover {
+    background-color: #1e7c34;
+}
