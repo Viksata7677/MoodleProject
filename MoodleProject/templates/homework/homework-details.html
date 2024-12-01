@@ -50,6 +50,27 @@
         {% if perms.homeworks.can_grade_homeworks %}
             <a href="{% url 'homework-grade' homework.pk %}" class="btn btn-grade">Grade</a>
         {% endif %}
+    
     </section>
+<h2>Comments</h2>
+    <div id="{{ homework.pk }}">
+        {% for comment in homework.comment_set.all %}
+            <p><strong>{{ comment.user.username }}</strong>: {{ comment.text }}</p>
+        {% empty %}
+            <p>No comments yet.</p>
+        {% endfor %}
+    </div>
+
+    {% if request.user.role == 'teacher' %}
+        <h2>Add a Comment</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            {{ form.errors }}
+            
+            <button type="submit">Submit</button>
+        </form>
+    {% endif %}
+
 </div>
 {% endblock %}

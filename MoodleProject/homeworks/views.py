@@ -1,7 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
-
+from django.views.generic.edit import FormMixin
+from common.forms import CommentForm
 from common.mixins import PermissionRequiredMixin
 from homeworks.forms import HomeworkCreateForm, HomeworkEditForm, HomeworkDeleteForm, HomeworkGradeForm
 from homeworks.models import Homework
@@ -23,10 +25,29 @@ class HomeworkUploadPage(LoginRequiredMixin, PermissionRequiredMixin, CreateView
         return super().form_valid(form)
 
 
-class HomeworkDetailPage(LoginRequiredMixin, DetailView):
+class HomeworkDetailPage(LoginRequiredMixin, DetailView, FormMixin):
     model = Homework
     template_name = 'homework/homework-details.html'
     context_object_name = 'homework'
+    form_class = CommentForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = self.get_form()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        homework = self.get_object()
+        form = self.get_form()
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.to_homework = homework
+            comment.user = request.user
+            comment.save()
+            return HttpResponseRedirect(self.request.path + f'#{homework.pk}')
+
+        return self.render_to_response(self.get_context_data(comment_form=form))
 
 
 class HomeworkEditPage(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
