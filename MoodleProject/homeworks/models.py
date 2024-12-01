@@ -20,6 +20,9 @@ class Homework(models.Model):
     is_graded = models.BooleanField(default=False)
     description = models.TextField(max_length=200, blank=True, null=True)
 
+    def __str__(self):
+        return self.title
+
     def save(self, *args, **kwargs):
 
         self.is_graded = self.grade is not None
