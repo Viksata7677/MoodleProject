@@ -44,6 +44,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 class Teacher(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='teacher_profile')
 
+    def __str__(self):
+        return self.user.username
+
 
 class Student(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='student_profile')
@@ -58,3 +61,6 @@ class Student(models.Model):
             self.avg_grade = 0.0
 
         self.save()
+
+    def __str__(self):
+        return self.user.username
