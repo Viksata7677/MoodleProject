@@ -52,14 +52,16 @@
         {% endif %}
     
     </section>
-<h2>Comments</h2>
-    <div id="{{ homework.pk }}">
-        {% for comment in homework.comment_set.all %}
-            <p><strong>{{ comment.user.username }}</strong>: {{ comment.text }}</p>
-        {% empty %}
-            <p>No comments yet.</p>
-        {% endfor %}
-    </div>
+    <h2>Comments</h2>
+        <div>
+            {% if homework.comment_set.all %}
+                {% for comment in homework.comment_set.all %}
+                    <p><strong>{{ comment.user.username }}</strong>: {{ comment.text }}</p>
+                {% endfor %}
+            {% else %}
+                <p>No comments yet.</p>
+            {% endif %}
+        </div>
 
     {% if request.user.role == 'teacher' %}
         <h2>Add a Comment</h2>
