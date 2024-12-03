@@ -87,7 +87,7 @@ DATABASES = {
         "NAME": "django_project_final_exam",
         "USER": config('DATABASE_USER'),
         "PASSWORD": config('DATABASE_PASSWORD'),
-        "HOST": config('DATABASE_HOST'),
+        "HOST": "127.0.0.1",
         "PORT": "5432",
     }
 }
