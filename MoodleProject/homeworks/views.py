@@ -73,10 +73,12 @@ class HomeworkDeletePage(LoginRequiredMixin, PermissionRequiredMixin, DeleteView
         return self.get_object().__dict__
 
 
-class HomeworkGradePage(UpdateView):
+class HomeworkGradePage(PermissionRequiredMixin, UpdateView):
     model = Homework
     form_class = HomeworkGradeForm
     template_name = 'homework/homework-grade.html'
+    permission_required = 'homework.can_grade_homeworks'
+    permission_denied_message = "You can't grade homeworks as a student."
 
     def get_success_url(self):
         return reverse_lazy('homework-details', kwargs={'pk': self.object.pk})
