@@ -54,15 +54,15 @@ class HomeworkDetailPage(LoginRequiredMixin, DetailView, FormMixin):
         return context
 
     def post(self, request, *args, **kwargs):
-        homework = self.get_object()
+        self.object = self.get_object()
         form = self.get_form()
 
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.to_homework = homework
+            comment.to_homework = self.get_object()
             comment.user = request.user
             comment.save()
-            return HttpResponseRedirect(self.request.path + f'#{homework.pk}')
+            return HttpResponseRedirect(self.request.path + f'#{self.object.pk}')
 
         return self.render_to_response(self.get_context_data(comment_form=form))
 

@@ -68,7 +68,6 @@
         <form method="post">
             {% csrf_token %}
             {{ comment_form.as_p }}
-            {{ form.errors }}
             
             <button type="submit">Submit</button>
         </form>
