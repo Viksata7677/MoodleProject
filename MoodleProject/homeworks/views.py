@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 from django.views.generic.edit import FormMixin
 from common.forms import CommentForm
 from common.mixins import PermissionRequiredMixin
@@ -10,6 +10,23 @@ from homeworks.models import Homework
 
 
 # Create your views here.
+class HomeworkView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    model = Homework
+    template_name = 'homework/homeworks.html'
+    context_object_name = 'homeworks'
+    permission_required = 'homeworks.view_homework'
+    permission_denied_message = "You don't have the permission to view the uploaded homeworks."
+
+    def get_queryset(self):
+        user = self.request.user
+
+        if user.is_superuser or user.is_staff:
+            return Homework.objects.all()
+
+        if user.groups.filter(name='Teacher').exists():
+            return Homework.objects.all()
+        else:
+            return Homework.objects.filter(student__user=user)
 
 
 class HomeworkUploadPage(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -77,7 +94,7 @@ class HomeworkGradePage(PermissionRequiredMixin, UpdateView):
     model = Homework
     form_class = HomeworkGradeForm
     template_name = 'homework/homework-grade.html'
-    permission_required = 'homework.can_grade_homeworks'
+    permission_required = 'homeworks.can_grade_homeworks'
     permission_denied_message = "You can't grade homeworks as a student."
 
     def get_success_url(self):

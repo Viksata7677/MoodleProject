@@ -3,7 +3,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
 from accounts.forms import CustomUserChangeForm, CustomUserCreationForm
-from accounts.models import Student
 
 # Register your models here.
 

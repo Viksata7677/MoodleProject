@@ -23,7 +23,7 @@ from MoodleProject import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
-    path('homework/', include('homeworks.urls')),
+    path('homeworks/', include('homeworks.urls')),
     path('', include('common.urls')),
     path('tests/', include('tests.urls')),
 ]
