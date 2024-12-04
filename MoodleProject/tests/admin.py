@@ -7,9 +7,11 @@ from tests.models import Test, Answer
 
 @admin.register(Test)
 class TestAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('title', 'created_by', 'created_at')
+    ordering = ('-created_at',)
 
 
 @admin.register(Answer)
 class AnswerAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('test', 'answer', 'student', 'created_at')
+    ordering = ('-created_at',)

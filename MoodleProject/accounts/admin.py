@@ -15,6 +15,7 @@ class AppUserAdmin(UserAdmin):
     form = CustomUserChangeForm
     add_form = CustomUserCreationForm
     list_display = ('username', 'email', 'first_name', 'last_name', 'age')
+    search_fields = ['age']
 
     add_fieldsets = (
         (

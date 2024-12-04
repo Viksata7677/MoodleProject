@@ -7,4 +7,6 @@ from homeworks.models import Homework
 
 @admin.register(Homework)
 class HomeworkAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('student', 'title', 'uploaded_at', 'is_graded')
+    list_filter = ('uploaded_at',)
+    ordering = ('-uploaded_at',)
