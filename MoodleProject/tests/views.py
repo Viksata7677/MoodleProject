@@ -53,11 +53,13 @@ class TestDetailView(LoginRequiredMixin, DetailView):
         return context
 
 
-class AnswerCreateView(LoginRequiredMixin, CreateView):
+class AnswerCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Answer
     form_class = TestAnswerForm
     template_name = 'tests/answer.html'
     success_url = reverse_lazy('test-list')
+    permission_required = 'tests.add_answer'
+    permission_denied_message = "You don't have the permission to answer tests."
 
     def form_valid(self, form):
         student = get_object_or_404(Student, user=self.request.user)
