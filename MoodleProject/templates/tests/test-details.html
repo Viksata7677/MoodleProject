@@ -3,7 +3,11 @@
 
 
 <h1>{{ test.title }}</h1>
-<p>Uploaded by: {{ test.created_by.user.username }}</p>
+    {% if test.created_by.user == request.user %}
+        <p>Uploaded by: Me</p>
+    {% else %}
+        <p>Uploaded by: {{ test.created_by.user.username }}</p>
+    {% endif %}
 <p>Uploaded at: {{ test.created_at }}</p>
 
 
