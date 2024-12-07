@@ -1,29 +1,35 @@
 {% extends 'base.html' %}
+
 {% block content %}
+    <div class="test-details">
+        <div class="test-header">
+            <h1>{{ test.title }}</h1>
+        </div>
 
+        <div class="uploaded-info">
+            {% if test.created_by.user == request.user %}
+                <p>Uploaded by: <strong>Me</strong></p>
+            {% else %}
+                <p>Uploaded by: <strong>{{ test.created_by.user.username }}</strong></p>
+            {% endif %}
+            <p class="uploaded-at">Uploaded at: <em>{{ test.created_at }}</em></p>
+        </div>
 
-<h1>{{ test.title }}</h1>
-    {% if test.created_by.user == request.user %}
-        <p>Uploaded by: Me</p>
-    {% else %}
-        <p>Uploaded by: {{ test.created_by.user.username }}</p>
-    {% endif %}
-<p>Uploaded at: {{ test.created_at }}</p>
-
-
-    {% if request.user.role == 'teacher' %}
-        <h2>Answers:</h2>
-{% if answers %}
-    <ol>
-        {% for answer in answers %}
-            <li>{{ answer.answer }} - Answered by: {{ answer.student.user.username }}</li>
-        {% endfor %}
-    </ol>
-{% else %}
-    <p>There are no answers yet.</p>
-{% endif %}
-    {% endif %}
-
-
-
+        {% if request.user.role == 'teacher' %}
+            <div class="answers-section">
+                <h2>Answers:</h2>
+                {% if answers %}
+                    <ol class="answers-list">
+                        {% for answer in answers %}
+                            <li>
+                                <span class="answer-text">{{ answer.answer }}</span> - Answered by: <strong>{{ answer.student.user.username }}</strong>
+                            </li>
+                        {% endfor %}
+                    </ol>
+                {% else %}
+                    <p class="no-answers">There are no answers yet.</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

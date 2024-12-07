@@ -1,21 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% if tests %}
-            <h1>All Tests</h1>
 
-    <ul>
-        {% for test in tests %}
-            <li>Question: {{ test.title }}</li>
-            {% if request.user.role == 'teacher' %}
-             <a class="" href="{% url 'delete-test' test.pk %}">Delete</a>
-            {% endif %}
-            {% if request.user.role == 'student' %}
-            <a class="" href="{% url 'create-answer' test.pk %}">Answer</a>
-            {% endif %}
-            <a class="" href="{% url 'test-detail' test.pk %}">Details</a>
-        {% endfor %}
-        {% else %}
-        <h1>No tests uploaded yet.</h1>
+<div class="container">
+    {% if tests %}
+        <div class="header">
+            <h1>All Tests</h1>
+        </div>
+
+        <div class="dashboard-list">
+            {% for test in tests %}
+                <div class="dashboard-card">
+                    <div class="dashboard-card-header">
+                        <p class="dashboard-title">Question: {{ test.title }}</p>
+                    </div>
+
+                    <div class="dashboard-card-actions">
+                        <a href="{% url 'test-detail' test.pk %}" class="details-link">View Details</a>
+                        {% if request.user.role == 'teacher' %}
+                            <a class="details-link" href="{% url 'delete-test' test.pk %}">Delete</a>
+                        {% endif %}
+                        {% if request.user.role == 'student' %}
+                            <a class="details-link" href="{% url 'create-answer' test.pk %}">Answer</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="no-tests">
+            <h1>No tests uploaded yet.</h1>
+        </div>
     {% endif %}
-    </ul>
+</div>
+
 {% endblock %}

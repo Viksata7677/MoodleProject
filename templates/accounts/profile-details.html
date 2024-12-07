@@ -1,16 +1,24 @@
 {% extends 'base.html' %}
-{% block content %}
-    <h1>Username: {{ user.username }}</h1>
-    <h1>First Name: {{ user.first_name }}</h1>
-    <h1>Last name: {{ user.last_name }}</h1>
-    <h1>Age: {{ user.age }}</h1>
-    <h1>Email: {{ user.email }}</h1>
-    <h1>Role: {{ user.role }}</h1>
-    
-    {% if user.student_profile %}
-        <h1>Average Grade: {{ user.student_profile.avg_grade }}</h1>
-    {% endif %}
 
-    <a class="" href="{% url 'profile-edit' request.user.pk %}">Edit</a>
-    <a class="" href="{% url 'profile-delete' request.user.pk %}">Delete</a>
+{% block content %}
+    <div class="profile-container">
+        <h1>Your Profile</h1>
+        <div class="profile-info">
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>First Name:</strong> {{ user.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+            <p><strong>Age:</strong> {{ user.age }}</p>
+            <p><strong>Email Address:</strong> {{ user.email }}</p>
+            <p><strong>Role:</strong> {{ user.role }}</p>
+
+            {% if user.student_profile %}
+                <p><strong>Average Grade:</strong> {{ user.student_profile.avg_grade }}</p>
+            {% endif %}
+        </div>
+
+        <div class="profile-actions">
+            <a href="{% url 'profile-edit' request.user.pk %}" class="button edit">Edit Profile</a>
+            <a href="{% url 'profile-delete' request.user.pk %}" class="button delete">Delete Profile</a>
+        </div>
+    </div>
 {% endblock %}

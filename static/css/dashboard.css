@@ -5,6 +5,12 @@
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .header h1 {
@@ -14,32 +20,34 @@
     text-align: center;
 }
 
-.homework-list {
+.dashboard-list {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.homework-card {
+.dashboard-card {
     background: #f4f4f4;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    transition: box-shadow 0.3s ease;
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.homework-card:hover {
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+.dashboard-card:hover {
+    transform: scale(1.02); /* Scale effect on card hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.homework-card-header {
+.dashboard-card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
 }
 
-.homework-title {
+.dashboard-title {
+    text-align: center;
     font-size: 18px;
     font-weight: bold;
     color: #333;
@@ -58,18 +66,19 @@
     color: #ff9800;
 }
 
-.homework-card-actions .details-link {
+.dashboard-card-actions .details-link {
     display: inline-block;
     text-decoration: none;
     background-color: #007bff;
     color: white;
     padding: 8px 15px;
     border-radius: 4px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.homework-card-actions .details-link:hover {
+.dashboard-card-actions .details-link:hover {
     background-color: #0056b3;
+    transform: translateY(-4px); /* Lifting the button on hover, similar to profile button */
 }
 
 .no-homework {

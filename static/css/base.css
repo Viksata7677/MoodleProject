@@ -1,0 +1,17 @@
+body {
+    background-image: url('https://img.freepik.com/free-vector/network-line-abstract-background-gradient_483537-2775.jpg?t=st=1733599201~exp=1733602801~hmac=e1b7d7d519dce419f5ffe78cc2b52d2f8b146d06f226169591e6b75bfe2b7ea9&w=1380');
+    color: #333;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: bold;
+    color: #444;
+    text-align: center;
+    text-shadow:
+        1px 1px 0px #fff,
+        -1px -1px 0px #fff,
+        1px -1px 0px #fff,
+        -1px 1px 0px #fff;
+    margin-top: 7px;
+}
