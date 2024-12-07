@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     "homeworks.apps.HomeworksConfig",
     "common.apps.CommonConfig",
     "tests.apps.TestsConfig",
+
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

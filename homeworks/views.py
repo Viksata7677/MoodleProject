@@ -3,10 +3,14 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 from django.views.generic.edit import FormMixin
+from rest_framework.generics import ListAPIView
+from rest_framework.permissions import IsAuthenticated
+
 from common.forms import CommentForm
 from common.mixins import PermissionRequiredMixin
 from homeworks.forms import HomeworkCreateForm, HomeworkEditForm, HomeworkDeleteForm, HomeworkGradeForm
 from homeworks.models import Homework
+from homeworks.serializers import HomeworkSerializer
 
 
 # Create your views here.
@@ -35,7 +39,7 @@ class HomeworkUploadPage(LoginRequiredMixin, PermissionRequiredMixin, CreateView
     template_name = 'homework/homework-upload.html'
     success_url = reverse_lazy('homeworks')
     permission_required = 'homeworks.add_homework'
-    permission_denied_message = "Can't upload homework as a teacher"
+    permission_denied_message = "You don't have permissions to upload homeworks."
 
     def form_valid(self, form):
         form.instance.student = self.request.user.student_profile
@@ -86,7 +90,7 @@ class HomeworkDeletePage(LoginRequiredMixin, PermissionRequiredMixin, DeleteView
     permission_required = 'homeworks.delete_homework'
     permission_denied_message = "Can't delete this homework."
 
-    def get_initial(self) -> dict:
+    def get_initial(self):
         return self.get_object().__dict__
 
 
@@ -99,3 +103,19 @@ class HomeworkGradePage(PermissionRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('homework-details', kwargs={'pk': self.object.pk})
+
+
+class HomeworkListAPIView(ListAPIView):
+    serializer_class = HomeworkSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+
+        if user.is_superuser or user.is_staff:
+            return Homework.objects.all()
+
+        if user.groups.filter(name='Teacher').exists():
+            return Homework.objects.all()
+        else:
+            return Homework.objects.filter(student__user=user)
