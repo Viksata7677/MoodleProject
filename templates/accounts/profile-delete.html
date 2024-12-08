@@ -5,8 +5,10 @@
     <h1>Are you sure you want to delete your profile?</h1>
         {{ form }}
         {% csrf_token %}
-        <button>Yes!</button>
-        <button type="button" onclick="history.back()">No!</button>  {# upon click navigates to the previous page in the browser history #}
+        <div class="button-container">
+            <button class="button-36">Yes!</button>
+            <button class="button-36" onclick="history.back()">No!</button>{# upon click navigates to the previous page in the browser history #}
+        </div>
     </form>
     </div>
 {% endblock %}

@@ -91,3 +91,14 @@
 .profile-actions .delete:hover {
     background-color: #c0392b;
 }
+
+.button-container {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 7px; /* Add space between buttons */
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+}
