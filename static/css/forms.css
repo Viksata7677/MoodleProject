@@ -13,15 +13,35 @@
     transform: translate(-50%, -50%);
     width: 100%;
     max-width: 350px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     font-family: Arial, sans-serif;
     color: var(--text-color);
-    background: rgba(255, 255, 255, 0.3); /* Semi-transparent white background */
-    backdrop-filter: blur(10px); /* Adds the blur effect */
     padding: 20px 30px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    overflow: hidden;
 }
+
+.form-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Apply blur to the background */
+    z-index: -1; /* Ensure it's behind the text */
+    border-radius: 8px;
+}
+
+.form-container:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
 
 form {
     width: 100%;
