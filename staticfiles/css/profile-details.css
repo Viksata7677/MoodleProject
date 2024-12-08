@@ -1,0 +1,104 @@
+.profile-container {
+    position: relative; /* Ensures pseudo-element is positioned relative to the container */
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Apply the blur effect directly to the container */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+    overflow: hidden; /* Prevents content overflow */
+}
+
+.profile-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.profile-container h1 {
+    text-align: center;
+    font-size: 32px;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.profile-info {
+    margin-bottom: 40px;
+}
+
+.profile-info p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 12px 0;
+    background-color: #f7f7f7;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.profile-info p:hover {
+    background-color: #f0f0f0;
+}
+
+.profile-info strong {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.profile-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.profile-actions .button {
+    display: inline-block;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    margin: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.profile-actions .button:hover {
+    transform: translateY(-4px);
+}
+
+.profile-actions .edit {
+    background-color: #3498db;
+    color: white;
+}
+
+.profile-actions .edit:hover {
+    background-color: #2980b9;
+}
+
+.profile-actions .delete {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.profile-actions .delete:hover {
+    background-color: #c0392b;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 7px; /* Add space between buttons */
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+}
