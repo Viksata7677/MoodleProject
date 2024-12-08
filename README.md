@@ -2,3 +2,6 @@ A Django web application where a student can upload photos of their homeworks, w
 
 .ENV INFO FOR SOFTUNI EXAMINER:
 https://docs.google.com/document/d/1DLg-8E84WHk89Wbt9WrytYdT1hpqCrzrz6LrKKAmxrg/edit?usp=sharing
+
+Deployed app:
+https://moodle-ercrg9d8b2b2hqhh.italynorth-01.azurewebsites.net
