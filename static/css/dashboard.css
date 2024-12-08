@@ -2,7 +2,8 @@
     max-width: 900px;
     margin: 20px auto;
     padding: 20px;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur effect for the background */
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;

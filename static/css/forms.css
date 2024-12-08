@@ -14,15 +14,18 @@
     width: 100%;
     max-width: 350px;
     background-color: white;
-    padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
     color: var(--text-color);
+    background: rgba(255, 255, 255, 0.3); /* Semi-transparent white background */
+    backdrop-filter: blur(10px); /* Adds the blur effect */
+    padding: 20px 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
 }
 
 form {
     width: 100%;
+    flex-direction: column;
 }
 
 form input,

@@ -1,11 +1,11 @@
-
 .test-details {
     max-width: 900px;
     margin: 20px auto;
     padding: 30px;
-    background-color: #ffffff;
+    background: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Adds a blur effect */
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 .test-header {

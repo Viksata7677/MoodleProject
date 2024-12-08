@@ -1,13 +1,16 @@
 .profile-container {
+    position: relative; /* Ensures pseudo-element is positioned relative to the container */
     max-width: 900px;
     margin: 30px auto;
     padding: 30px;
-    background-color: #fff;
+    background: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Apply the blur effect directly to the container */
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
     transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+    overflow: hidden; /* Prevents content overflow */
 }
 
 .profile-container:hover {

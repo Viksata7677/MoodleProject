@@ -1,12 +1,14 @@
 .homework-details-container {
     max-width: 900px;
-    margin: 20px auto;
+    margin: 11px auto;
     padding: 30px;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.5); /* Set background transparency */
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
     color: #333;
+    backdrop-filter: blur(10px); /* Apply blur effect to the background */
+    -webkit-backdrop-filter: blur(10px); /* Ensure compatibility with WebKit browsers */
 }
 
 .homework-header {
