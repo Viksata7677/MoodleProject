@@ -1,6 +1,7 @@
 from django.contrib.auth import login, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView
+from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
@@ -41,6 +42,9 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def test_func(self):  # gives 403 error when trying to edit a different user profile
         profile = get_object_or_404(CustomUser, pk=self.kwargs['pk'])
         return self.request.user == profile
+
+    def handle_no_permission(self):
+        return HttpResponseForbidden("You don't have permission to edit this profile.")
 
     def get_success_url(self):
         return reverse_lazy('profile-details', kwargs={'pk': self.object.pk})
