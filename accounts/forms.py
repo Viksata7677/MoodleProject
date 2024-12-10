@@ -32,6 +32,11 @@ class CustomAuthenticationForm(PlaceholderMixin, AuthenticationForm):
         'password': 'Enter your password',
     }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['username'].label = 'Email or username'
+
 
 class ProfileBaseForm(forms.ModelForm):
     class Meta:
