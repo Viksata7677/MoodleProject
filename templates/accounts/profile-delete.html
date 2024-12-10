@@ -7,7 +7,7 @@
         {% csrf_token %}
         <div class="button-container">
             <button class="button-36">Yes!</button>
-            <button class="button-36" onclick="history.back()">No!</button>{# upon click navigates to the previous page in the browser history #}
+            <a href="{% url 'profile-details' request.user.pk %}" class="button-36">No!</a>
         </div>
     </form>
     </div>

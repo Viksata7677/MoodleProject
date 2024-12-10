@@ -45,7 +45,6 @@ class ProfileEditForm(ProfileBaseForm):
 
 
 class ProfileDeleteForm(ProfileBaseForm):
-    pass
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
