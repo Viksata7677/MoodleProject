@@ -2,12 +2,20 @@ Deployed app:
 https://moodle-ercrg9d8b2b2hqhh.italynorth-01.azurewebsites.net
 
 Test users:
-      Students
+Student:
 username - Student
 password - somepass
 
-Teachers
+Teacher:
 username - Teacher1
+password - somepass
+
+admin:
+email - admin@admin.com
+password - admin
+
+staff
+username - Viktor
 password - somepass
 
 
