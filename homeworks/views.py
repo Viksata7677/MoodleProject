@@ -66,7 +66,7 @@ class HomeworkDetailPage(LoginRequiredMixin, DetailView, FormMixin):
 
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.to_homework = self.get_object()
+            comment.to_homework = self.object
             comment.user = request.user
             comment.save()
             return HttpResponseRedirect(self.request.path + f'#{self.object.pk}')
