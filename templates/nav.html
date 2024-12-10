@@ -9,9 +9,6 @@
         {% if request.user.role == 'teacher' %}
             <li><a href="{% url 'upload-test' %}">Upload Test</a></li>
         {% endif %}
-                {% if request.user.is_staff %}
-            <li><a href="http://localhost:8000/admin/">AdminPanel</a></li>
-                {% endif %}
                 {% if request.user.role == 'student' %}
             <li><a href="{% url 'homework-upload' %}">Upload homework</a></li>
                 {% endif %}
