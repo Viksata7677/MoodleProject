@@ -49,6 +49,7 @@ class ProfileDeleteForm(ProfileBaseForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
         for field in self.fields.values():
             field.required = False
             field.widget.attrs['disabled'] = True

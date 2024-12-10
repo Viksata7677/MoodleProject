@@ -14,10 +14,12 @@ class CreateTestView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     template_name = 'tests/test-create.html'
     form_class = TestCreateForm
     success_url = reverse_lazy('test-list')
+
     permission_required = 'tests.add_test'
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user.teacher_profile
+
         return super().form_valid(form)
 
 
@@ -26,6 +28,7 @@ class TestsView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     template_name = 'tests/tests.html'
     context_object_name = 'tests'
     queryset = Test.objects.all()
+
     permission_required = 'tests.view_test'
     permission_denied_message = "You don't have the permission to access this."
 
@@ -35,6 +38,7 @@ class TestDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     template_name = 'tests/test-delete.html'
     form_class = TestDeleteForm
     success_url = reverse_lazy('test-list')
+
     permission_required = 'tests.delete_test'
 
     def get_initial(self) -> dict:
@@ -48,8 +52,10 @@ class TestDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         test = self.get_object()
         context['answers'] = test.answers.all()
+
         return context
 
 
@@ -58,6 +64,7 @@ class AnswerCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = TestAnswerForm
     template_name = 'tests/answer.html'
     success_url = reverse_lazy('test-list')
+
     permission_required = 'tests.add_answer'
     permission_denied_message = "You don't have the permission to answer tests."
 

@@ -18,6 +18,7 @@ class HomeworkView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = Homework
     template_name = 'homework/homeworks.html'
     context_object_name = 'homeworks'
+
     permission_required = 'homeworks.view_homework'
     permission_denied_message = "You don't have the permission to view the uploaded homeworks."
 
@@ -38,6 +39,7 @@ class HomeworkUploadPage(LoginRequiredMixin, PermissionRequiredMixin, CreateView
     form_class = HomeworkCreateForm
     template_name = 'homework/homework-upload.html'
     success_url = reverse_lazy('homeworks')
+
     permission_required = 'homeworks.add_homework'
     permission_denied_message = "You don't have permissions to upload homeworks."
 
@@ -54,6 +56,7 @@ class HomeworkDetailPage(LoginRequiredMixin, DetailView, FormMixin):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         context['comment_form'] = self.get_form()
         return context
 
@@ -75,6 +78,7 @@ class HomeworkEditPage(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Homework
     form_class = HomeworkEditForm
     template_name = 'homework/homework-edit.html'
+
     permission_required = 'homeworks.change_homework'
     permission_denied_message = "Can't edit this homework."
 
@@ -87,6 +91,7 @@ class HomeworkDeletePage(LoginRequiredMixin, PermissionRequiredMixin, DeleteView
     form_class = HomeworkDeleteForm
     template_name = 'homework/homework-delete.html'
     success_url = reverse_lazy('homeworks')
+
     permission_required = 'homeworks.delete_homework'
     permission_denied_message = "Can't delete this homework."
 
@@ -98,6 +103,7 @@ class HomeworkGradePage(PermissionRequiredMixin, UpdateView):
     model = Homework
     form_class = HomeworkGradeForm
     template_name = 'homework/homework-grade.html'
+
     permission_required = 'homeworks.can_grade_homeworks'
     permission_denied_message = "You can't grade homeworks as a student."
 
