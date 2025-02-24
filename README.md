@@ -1,4 +1,4 @@
-Deployed app:
+Deployed app (Stopped):
 https://moodle-ercrg9d8b2b2hqhh.italynorth-01.azurewebsites.net
 
 Test users:
