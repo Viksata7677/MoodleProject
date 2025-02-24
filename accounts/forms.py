@@ -46,7 +46,7 @@ class ProfileBaseForm(forms.ModelForm):
 
 class ProfileEditForm(ProfileBaseForm):
     class Meta(ProfileBaseForm.Meta):
-        fields = ['first_name', 'last_name', 'age']
+        fields = ['username', 'first_name', 'last_name', 'age']
 
 
 class ProfileDeleteForm(ProfileBaseForm):
